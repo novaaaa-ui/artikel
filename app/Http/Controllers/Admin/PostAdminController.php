@@ -71,6 +71,16 @@ class PostAdminController extends Controller
             ->with('success', 'Post berhasil diperbarui!');
     }
 
+    public function edit(Post $post)
+    {
+        return view('admin.posts.edit', [
+            'title' => 'Edit Artikel',
+            'post' => $post,
+            'categories' => Category::all(),
+        ]);
+    }
+
+
     
     public function destroy($id)
     {
