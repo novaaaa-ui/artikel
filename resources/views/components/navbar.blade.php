@@ -1,4 +1,9 @@
 <nav class="bg-gray-800 dark:bg-gray-800/50" x-data="{ isOpen: false }">
+  <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        </li>
+    </ul>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
@@ -26,7 +31,7 @@
               </svg>
             </button>
 
-            <!-- Profile dropdown -->
+            
             <el-dropdown class="relative ml-3">
               <button type="button" @click="isOpen = !isOpen"
                 class="relative flex max-w-xs items-center rounded-full">
@@ -35,7 +40,7 @@
                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" class="size-8 rounded-full outline -outline-offset-1 outline-white/10" />
               </button>
 
-              <!-- PERBAIKAN: posisi x-show, transisi, dan penutup tag -->
+              
               <div x-show="isOpen"
                 x-transition:enter="transition ease-out duration-100 transform"
                 x-transition:enter-start="opacity-0 scale-95"
@@ -54,7 +59,7 @@
           </div>
         </div>
 
-        <!-- Mobile button -->
+        
         <div class="-mr-2 flex md:hidden">
           <button @click="isOpen = !isOpen"
             class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white">
@@ -74,7 +79,7 @@
       </div>
     </div>
 
-    <!-- Mobile menu -->
+    
     <el-disclosure id="mobile-menu" hidden class="block md:hidden">
       <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
         <x-nav-link href="/" active="request()->is('/')">Home</x-nav-link>
@@ -84,4 +89,4 @@
         <x-nav-link href="/logout" active="request()->is('logout')">Logout</x-nav-link>
       </div>
     </el-disclosure>
-</nav>
+</nav>  

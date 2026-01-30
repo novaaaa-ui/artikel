@@ -25,32 +25,28 @@ class PostAdminController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'title' => 'required',
             'body' => 'required',
             'category_id' => 'required'
         ]);
 
-        Post::create([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'body' => $request->body,
-            'author_id' => auth()->id(),
-            'category_id' => $request->category_id
-        ]);
+        $slug = Str::slug($data['title']);
+
+        $forbidden = ['create', 'edit', 'admin', 'posts'];
+        if (in_array($slug, $forbidden)) {
+            $slug .= '-artikel';
+        }
+
+        $data['slug'] = $slug;
+        $data['author_id'] = auth()->id();
+
+        Post::create($data);
 
         return redirect()->route('admin.posts.index')
             ->with('success', 'Post berhasil ditambahkan!');
     }
 
-   
-    public function edit($id)
-    {
-        return view('admin.posts.edit', [
-            'post' => Post::findOrFail($id),
-            'categories' => Category::all()
-        ]);
-    }
 
     
     public function update(Request $request, $id)
